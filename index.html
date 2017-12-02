@@ -13,6 +13,28 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<link rel="stylesheet" href="ihover.css"> 
+
+	<style>
+		.lady_image {
+			background-image: url(images/pic04.jpg);
+			background-position: left -25px top -32px;
+			height: 115px;
+			width: 114px;
+		}
+		.ih-item.circle .img {
+            width: 180px;
+            height: 180px;
+        }
+        .ih-item.circle {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 180px;
+            height: 180px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -22,7 +44,19 @@
 
 		<!-- Header -->
 		<header id="header">
-			<div class="logo">
+				<div class="ih-item circle effect15 left_to_right header-circle">
+						<a href="#">
+						  <div class="img">
+							<img src="images/pic09.jpg" alt="7" style="width: 180px; height: 180px;"/>
+						  </div>
+						  <div class="info">
+							<h3>Music box</h3>
+							<p class="start-misic" style="display: block;">Click to Start</p >
+							<p class="stop-misic" style="display: none;">Click to Stop</p >
+						  </div>
+						</a>
+					  </div>
+					  <audio loop="loop" class="audio-tag" type="audio/mpeg" src="Magic.mp3" ></audio><div class="logo">
 				<span class="icon fa-diamond"></span>
 			</div>
 			<div class="content">
@@ -39,9 +73,6 @@
 					<li><a href="#stories" style="padding-left: 40px;
 						padding-right: 40px;
 						width: 147px;">stories</a></li>
-					<li><a href="#music"style="padding-left: 40px;
-						padding-right: 40px;
-						width: 147px;">music</a></li>
 					<!--<li><a href="#elements">Elements</a></li>-->
 				</ul>
 			</nav>
@@ -56,7 +87,10 @@
 				<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
 				<div>
 					<div style="display: inline-block; width: 20%;">
+						<div class="lady_image" style=""></div>
+						<!--
 						<img style="width:100%" src="images/pic04.jpg">
+						-->
 					</div>
 				    <div style="display: inline-block; width: 70%;margin-left: 10px;">
 							<p style="color: burlywood;
@@ -124,41 +158,7 @@
 				
 			</article>
 
-			<!-- About -->
-			<article id="music">
-				<h2 class="major">Freediving as a sport</h2>
-				<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-				<p>As well as the perfect way to relax at the weekend, freediving is an international competitive sport. Professional freedivers exploit the bodies' diving adaptations to go to depths of over 200m on a single breath. These diving reflexes help conserve oxygen by restricting the blood flow to your extremities conserving it for your vital organs.</p>
-				<p>Since 1992 AIDA have been organising freediving competitions around the world making the sport safer but as competitive as ever. Freediving competitions also bring the community of freedivers together where they can share their knowledge and experience with other likeminded people.</p>
-        <p>We hope you will join us!</p>
-			</article>
-
-			<!-- Contact -->
-			<article id="contact">
-				<h2 class="major">join us</h2>
-				<form method="post" action="#">
-					<div class="field half first">
-						<label for="name">Name</label>
-						<input type="text" name="name" id="name" />
-					</div>
-					<div class="field half">
-						<label for="email">Email</label>
-						<input type="text" name="email" id="email" />
-					</div>
-					<div class="field">
-						<label for="message">Message</label>
-						<textarea name="message" id="message" rows="4"></textarea>
-					</div>
-					<ul class="actions">
-						<li><input type="submit" value="Send Message" class="special" /></li>
-						<li><input type="reset" value="Reset" /></li>
-					</ul>
-				</form>
-				<ul class="icons">
-					<li><a href="https://www.aidainternational.org/Freediving" class="icon fa-user"><span class="label">Twitter</span></a></li>
-				</ul>
-			</article>
-
+			
 			<!-- Elements -->
 			<article id="elements">
 				<h2 class="major">Elements</h2>
@@ -420,5 +420,27 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	<script src="assets/js/main.js"></script>
 
 </body>
+<script>
+	$(document).ready(function(){
+  $('.header-circle').click(function(){
+    if($('.start-misic').offset().left == 0){
+      $('.audio-tag')[0].pause();
+      $('.stop-misic').hide();
+      $('.start-misic').show();
+      console.info("stop")
+    }else{
+      $('.audio-tag')[0].play();
+      $('.start-misic').hide();
+      $('.stop-misic').show();
+      console.info("start")
+    }
+  })
+  $('.audio-tag')[0].onended = function(){
+    $('.stop-misic').hide();
+    $('.start-misic').show();
+    console.info("===end")
+  }
+});
+</script>
 
 </html>
